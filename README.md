@@ -142,7 +142,7 @@ VITE_TAVILY_API_KEY=tvly-...your-key-here...
 npm run dev
 ```
 
-The app opens at **http://localhost:5173**.
+The app opens at **http://localhost:3000**.
 
 ### 5. Build for production
 
@@ -219,8 +219,4 @@ When the model needs current information it returns `finish_reason: "tool_calls"
 | `npm run preview` | Serve the production build locally for verification |
 | `npm run lint` | Run ESLint across all TypeScript/TSX files |
 
----
 
-## License
-
-MIT
