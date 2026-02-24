@@ -106,7 +106,7 @@ src/
 ### 1. Clone the repository
 
 ```bash
-git clone <your-repo-url>
+git clone [<your-repo-url>](https://github.com/dakshgoti14/Cognizant-Assesment.git)
 cd Cognizant-Assesment
 ```
 
