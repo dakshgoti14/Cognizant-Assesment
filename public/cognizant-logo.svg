@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56">
+  <!-- Left panel: dark navy -->
+  <polygon points="2,28 16,8 16,48" fill="#1a4fa0"/>
+  <!-- Top panel: medium blue -->
+  <polygon points="16,8 40,8 28,28" fill="#2d78d6"/>
+  <!-- Bottom panel: teal/cyan -->
+  <polygon points="16,48 40,48 28,28" fill="#00b4c8"/>
+  <!-- Right panel: light blue -->
+  <polygon points="40,8 54,28 40,48" fill="#5bb8f5"/>
+  <!-- Inner highlight -->
+  <polygon points="16,8 28,28 16,48" fill="rgba(255,255,255,0.10)"/>
+</svg>

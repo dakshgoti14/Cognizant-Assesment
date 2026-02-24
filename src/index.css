@@ -1,0 +1,300 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Keyframes that are used in custom CSS classes (not Tailwind utilities)
+   must be defined here so they are always emitted by the build. */
+@keyframes fadeInUp {
+  0%   { opacity: 0; transform: translateY(12px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================
+   BASE LAYER - Custom Properties & Resets
+   ============================================ */
+@layer base {
+  :root {
+    --color-bg: #09090b;
+    --color-surface: #18181b;
+    --color-surface-2: #27272a;
+    --color-border: #3f3f46;
+    --color-border-subtle: #27272a;
+    --color-text-primary: #fafafa;
+    --color-text-secondary: #a1a1aa;
+    --color-text-muted: #71717a;
+    --color-accent-start: #7c3aed;
+    --color-accent-end: #4f46e5;
+    --scrollbar-width: 6px;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text-primary);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+    overflow: hidden;
+    height: 100dvh;
+  }
+
+  #root {
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: var(--scrollbar-width);
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #3f3f46;
+    border-radius: 9999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #52525b;
+  }
+
+  /* Focus visible styles */
+  :focus-visible {
+    outline: 2px solid #7c3aed;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Selection */
+  ::selection {
+    background-color: rgba(124, 58, 237, 0.3);
+    color: #fafafa;
+  }
+}
+
+/* ============================================
+   COMPONENT LAYER - Reusable Patterns
+   ============================================ */
+@layer components {
+
+  /* Gradient Text */
+  .gradient-text {
+    background: linear-gradient(135deg, #a78bfa 0%, #818cf8 50%, #60a5fa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Gradient Background (animated) */
+  .gradient-bg {
+    background: linear-gradient(135deg, #7c3aed, #4f46e5, #2563eb);
+    background-size: 200% 200%;
+    animation: gradientShift 4s ease infinite;
+  }
+
+  /* Glass Panel */
+  .glass-panel {
+    background: rgba(24, 24, 27, 0.8);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid rgba(63, 63, 70, 0.6);
+  }
+
+  /* Chat Message Container */
+  .message-container {
+    opacity: 0;
+    animation: fadeInUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  /* User Message Bubble */
+  .user-bubble {
+    background: linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%);
+    box-shadow: 0 4px 24px rgba(124, 58, 237, 0.25), 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+
+  /* AI Message Bubble */
+  .ai-bubble {
+    background: #1e1e21;
+    border: 1px solid rgba(63, 63, 70, 0.8);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Error Bubble */
+  .error-bubble {
+    background: rgba(127, 29, 29, 0.3);
+    border: 1px solid rgba(239, 68, 68, 0.4);
+  }
+
+  /* Code Block */
+  .code-block {
+    background: #0d0d0f;
+    border: 1px solid #27272a;
+    border-radius: 8px;
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 0.8125rem;
+    line-height: 1.7;
+  }
+
+  /* Inline Code */
+  .inline-code {
+    background: rgba(63, 63, 70, 0.6);
+    border: 1px solid rgba(63, 63, 70, 0.8);
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 0.8125em;
+    padding: 0.1em 0.4em;
+  }
+
+  /* Input Field */
+  .chat-textarea {
+    background: transparent;
+    color: #fafafa;
+    resize: none;
+    outline: none;
+    width: 100%;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    caret-color: #7c3aed;
+  }
+
+  .chat-textarea::placeholder {
+    color: #52525b;
+  }
+
+  /* Send Button */
+  .send-button {
+    background: linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 8px rgba(124, 58, 237, 0.3);
+  }
+
+  .send-button:hover:not(:disabled) {
+    background: linear-gradient(135deg, #6d28d9 0%, #4338ca 100%);
+    box-shadow: 0 4px 16px rgba(124, 58, 237, 0.5);
+    transform: translateY(-1px);
+  }
+
+  .send-button:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: 0 1px 4px rgba(124, 58, 237, 0.3);
+  }
+
+  .send-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+
+  /* Avatar */
+  .avatar-user {
+    background: linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%);
+    box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.3);
+  }
+
+  .avatar-ai {
+    background: linear-gradient(135deg, #18181b 0%, #27272a 100%);
+    border: 1px solid #3f3f46;
+  }
+
+  /* Typing Indicator Dots */
+  .typing-dot:nth-child(1) { animation-delay: 0ms; }
+  .typing-dot:nth-child(2) { animation-delay: 160ms; }
+  .typing-dot:nth-child(3) { animation-delay: 320ms; }
+
+  /* Suggestion Cards */
+  .suggestion-card {
+    background: rgba(24, 24, 27, 0.6);
+    border: 1px solid rgba(63, 63, 70, 0.6);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .suggestion-card:hover {
+    background: rgba(39, 39, 42, 0.8);
+    border-color: rgba(124, 58, 237, 0.5);
+    box-shadow: 0 0 0 1px rgba(124, 58, 237, 0.2), 0 4px 16px rgba(124, 58, 237, 0.1);
+    transform: translateY(-2px);
+  }
+
+  /* Clear button */
+  .clear-button {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .clear-button:hover {
+    background: rgba(239, 68, 68, 0.1);
+    color: #f87171;
+    border-color: rgba(239, 68, 68, 0.3);
+  }
+
+  /* Copy button */
+  .copy-button {
+    opacity: 0;
+    transition: opacity 0.15s ease;
+  }
+
+  .message-wrapper:hover .copy-button {
+    opacity: 1;
+  }
+
+  /* Scroll to bottom button */
+  .scroll-btn {
+    background: rgba(24, 24, 27, 0.9);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(63, 63, 70, 0.8);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    transition: all 0.2s ease;
+  }
+
+  .scroll-btn:hover {
+    background: rgba(39, 39, 42, 0.95);
+    border-color: rgba(124, 58, 237, 0.5);
+    box-shadow: 0 4px 20px rgba(124, 58, 237, 0.2);
+  }
+}
+
+/* ============================================
+   UTILITIES LAYER - Helper Classes
+   ============================================ */
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+  .text-balance { text-wrap: balance; }
+
+  .animation-delay-100 { animation-delay: 100ms; }
+  .animation-delay-200 { animation-delay: 200ms; }
+  .animation-delay-300 { animation-delay: 300ms; }
+
+  /* Message content formatting */
+  .prose-chat p { margin-bottom: 0.75em; }
+  .prose-chat p:last-child { margin-bottom: 0; }
+  .prose-chat ul { list-style: disc; padding-left: 1.4em; margin-bottom: 0.75em; }
+  .prose-chat ol { list-style: decimal; padding-left: 1.4em; margin-bottom: 0.75em; }
+  .prose-chat li { margin-bottom: 0.25em; }
+  .prose-chat strong { font-weight: 600; color: #f4f4f5; }
+  .prose-chat em { font-style: italic; }
+  .prose-chat h1, .prose-chat h2, .prose-chat h3 {
+    font-weight: 600;
+    margin-bottom: 0.5em;
+    margin-top: 1em;
+    color: #f4f4f5;
+  }
+  .prose-chat h1 { font-size: 1.25em; }
+  .prose-chat h2 { font-size: 1.1em; }
+  .prose-chat h3 { font-size: 1em; }
+}
